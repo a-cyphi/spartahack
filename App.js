@@ -1,11 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-
+import { StyleSheet, Text, View,Image } from 'react-native';
+import {adaptiveIcon} from './images/tabbi.png'
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Tabbi!</Text>
       <StatusBar style="auto" />
+      <Image source={require('./images/tabbi.png')} />
+    
     </View>
   );
 }
@@ -13,7 +14,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'black',
     alignItems: 'center',
     justifyContent: 'center',
   },
