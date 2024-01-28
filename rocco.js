@@ -10,7 +10,7 @@ const RoccoScreen = () => {
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Rocco</Text>
       </View>
-      <View style={styles.chatBubble}>
+      <View style={styles.chatBubble1}>
         <View style={styles.nameWrapper}>
           <Text style={[styles.name, styles.text]}>Rocco:</Text>
         </View>
@@ -18,7 +18,7 @@ const RoccoScreen = () => {
           <Text style={[styles.content, styles.text]}>Hey! You! Yes, you! Are you just going to stand by and watch that adorable tabby cat starve?</Text>
         </View>
       </View>
-      <View style={styles.chatBubbleSmall}>
+      <View style={styles.chatBubble2}>
         <View style={styles.nameWrapper}>
           <Text style={[styles.name, styles.text]}>You:</Text>
         </View>
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginLeft: 10,
   },
-  chatBubble: {
+  chatBubble1: {
     backgroundColor: '#fbffb9', // Slightly darker brown color
     borderRadius: 10,
     marginBottom: 10,
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     paddingVertical: 50,
   },
-  chatBubbleSmall: {
+  chatBubble2: {
     backgroundColor: '#fbffb9', // Slightly darker brown color
     borderRadius: 10,
     marginBottom: 10,
