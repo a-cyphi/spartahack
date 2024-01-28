@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+/*import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
@@ -171,4 +171,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RoccoScreen;
+export default RoccoScreen;*/
