@@ -1,6 +1,6 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image,Button } from 'react-native';
+import { StyleSheet, Text, View, Image, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import RoccoScreen from './introScene'; 
@@ -14,9 +14,18 @@ function HomeScreen({ navigation }) {
       <StatusBar style="auto"/>
       <Image source={require('./images/logo.png')}/>
       
+      <View style={styles.startButtonContainer}>
+        <Button
+          onPress={() => {
+            // Functionality when the start button is pressed
+          }}
+        />
+        <Image source={require('./images/start.png')} style={styles.startButton} />
+      </View>
+
       <Button
-        title="Go to Rocco"
         onPress={() => navigation.navigate('Rocco')}
+        color= 'transparent'
       />
       
     </View>
@@ -41,5 +50,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#fdd692',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  startButtonContainer: {
+    position: 'relative',
+  },
+  startButton: {
+    position: 'absolute',
+    top: -40, // Adjust this value as per your requirement
+    left: '-90%',
+    transform: [{ translateX: -50 }], // Adjust this value based on the width of your button
   },
 });
