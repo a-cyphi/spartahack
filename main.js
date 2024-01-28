@@ -15,15 +15,20 @@ const MainScreen = ({ navigation }) => {
         {/* Add icons here */}
       </View>
       {/* Add XP bar */}
-      <View style={styles.xpBar}></View>
+      <View style={styles.xpBar}>
+        <StatusBar style="auto"/>
+      <Image source={require('./images/xpbar.png')}/>
+      </View>
       {/* Add Money bar */}
-      <View style={styles.moneyBar}></View>
+      <View style={styles.moneyBar}>
+      <StatusBar style="auto"/>
+      <Image source={require('./images/xpbar.png')}/>
+      </View>
       {/* Add Level bar */}
-      <View style={styles.levelBar}></View>
-      
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Rocco')}>
-        <Text style={styles.buttonText}>Go to Rocco</Text>
-      </TouchableOpacity>
+      <View style={styles.levelBar}>
+      <StatusBar style="auto"/>
+      <Image source={require('./images/logo.png')}/>
+      </View>
     </View>
   );
 }

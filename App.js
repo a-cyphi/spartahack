@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import RoccoScreen from './introScene'; 
 import MainScreen from './main';
 
+
 const Stack = createStackNavigator();
 
 function HomeScreen({ navigation }) {
@@ -13,7 +14,7 @@ function HomeScreen({ navigation }) {
     <View style={styles.container}>
       <StatusBar style="auto"/>
       <Image source={require('./images/logo.png')}/>
-      
+      <Image source={require('./images/tab.png')}/>
       <Button
         title="Go to Rocco"
         onPress={() => navigation.navigate('Rocco')}
