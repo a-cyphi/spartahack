@@ -3,7 +3,8 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image,Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import RoccoScreen from './rocco'; // Replace './Rocco' with the actual path to your Rocco.js file
+import RoccoScreen from './rocco'; 
+import MainScreen from './main';
 
 const Stack = createStackNavigator();
 
@@ -12,7 +13,6 @@ function HomeScreen({ navigation }) {
     <View style={styles.container}>
       <StatusBar style="auto"/>
       <Image source={require('./images/tabbi.png')}/>
-      <Image source={require('./images/tab.png')}/>
       
       <Button
         title="Go to Rocco"
@@ -29,6 +29,7 @@ export default function App() {
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Rocco" component={RoccoScreen} />
+        <Stack.Screen name= "Main" component ={MainScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -37,7 +38,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fbffb9',
+    backgroundColor: '#fdd692',
     alignItems: 'center',
     justifyContent: 'center',
   },

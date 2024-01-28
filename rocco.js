@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 const RoccoScreen = () => {
+  const navigation = useNavigation();
   const [showChatBubble2, setShowChatBubble2] = useState(false);
   const [showChatBubble3, setShowChatBubble3] = useState(false);
   const [showChatBubble4, setShowChatBubble4] = useState(false);
@@ -14,17 +16,26 @@ const RoccoScreen = () => {
       setShowChatBubble3(true);
     } else if (!showChatBubble4) {
       setShowChatBubble4(true);
+    } else {
+      // Navigate to the Main screen
+      navigation.navigate('Main');
     }
+  };
+
+  const handleNavigateToMain = () => {
+    // Navigate to the Main screen
+    navigation.navigate('Main');
   };
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleNavigateToMain}>
+          <Text style={styles.headerButton}>Next</Text>
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Rocco</Text>
       </View>
-      <ScrollView contentContainerStyle={styles.contentContainer}>
+      <ScrollView style={styles.scrollView} showsVerticalScrollIndicator={true}>
         <View style={styles.chatBubble1}>
           <View style={styles.nameWrapper}>
             <Text style={[styles.name, styles.text]}>Rocco:</Text>
@@ -63,10 +74,10 @@ const RoccoScreen = () => {
             </View>
           </View>
         )}
-        <TouchableOpacity style={styles.nextButton} onPress={handleNextChatBubble}>
-          <Ionicons name="arrow-forward-circle" size={40} color="beige" />
-        </TouchableOpacity>
       </ScrollView>
+      <TouchableOpacity style={styles.nextButton} onPress={handleNextChatBubble}>
+        <Ionicons name="arrow-forward-circle" size={40} color="beige" />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -76,52 +87,58 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     backgroundColor: '#fdd692', // Light brown background color
+    overflow: scroll
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between', // Align items horizontally with space in between
     marginBottom: 20,
   },
   headerTitle: {
     fontWeight: 'bold',
     fontSize: 20,
-    marginLeft: 10,
+  },
+  headerButton: {
+    fontWeight: 'bold',
+    fontSize: 16,
+    color: 'blue', // Change the color of the button text
   },
   chatBubble1: {
     backgroundColor: '#754f44', // Slightly darker brown color
     borderRadius: 10,
-    marginBottom: 10,
+    marginBottom: 20,
     width: '80%',
     alignSelf: 'center',
     paddingHorizontal: 15,
-    paddingVertical: 50,
+    paddingVertical: 80,
   },
   chatBubble2: {
     backgroundColor: '#754f44', // Slightly darker brown color
     borderRadius: 10,
-    marginBottom: 10,
+    marginBottom: 20,
     width: '80%',
     alignSelf: 'center',
     paddingHorizontal: 15,
-    paddingVertical: 50,
+    paddingVertical: 80,
   },
   chatBubble3: {
     backgroundColor: '#754f44', // Slightly darker brown color
     borderRadius: 10,
-    marginBottom: 10,
+    marginBottom: 20,
     width: '80%',
     alignSelf: 'center',
     paddingHorizontal: 15,
-    paddingVertical: 50,
+    paddingVertical: 80,
   },
   chatBubble4: {
     backgroundColor: '#754f44', // Slightly darker brown color
     borderRadius: 10,
-    marginBottom: 10,
+    marginBottom: 20,
     width: '80%',
     alignSelf: 'center',
     paddingHorizontal: 15,
-    paddingVertical: 50,
+    paddingVertical: 80,
   },
   nameWrapper: {
     marginBottom: 5,
@@ -147,8 +164,10 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 20, // Adjusted font size to make it bigger
   },
-  contentContainer: {
-    flexGrow: 1, // Ensures that content can scroll if it exceeds the screen height
+  scrollView: {
+    flex: 1,
+    marginBottom: 100, 
+    overflow: scroll,
   },
 });
 

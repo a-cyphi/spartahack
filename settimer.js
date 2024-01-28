@@ -1,7 +1,9 @@
 import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar, View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
-const SetTimerScreen = () => {
+const SetTimerScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
@@ -24,6 +26,9 @@ const SetTimerScreen = () => {
         </TouchableOpacity>
         <TouchableOpacity style={[styles.button, styles.secondaryButton]} onPress={() => console.log('Watch cat')}>
           <Text style={styles.buttonText}>Watch cat</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Main')}>
+        <Text style={styles.buttonText}>Go to Next</Text>
         </TouchableOpacity>
       </View>
     </View>
