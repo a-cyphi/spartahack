@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 const RoccoScreen = () => {
+  const [showChatBubble2, setShowChatBubble2] = useState(false);
+  const [showChatBubble3, setShowChatBubble3] = useState(false);
+
+  const handleNextChatBubble = () => {
+    if (!showChatBubble2) {
+      setShowChatBubble2(true);
+    } else if (!showChatBubble3) {
+      setShowChatBubble3(true);
+    }
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.header}>
         <TouchableOpacity>
-          <Text>Back</Text>
         </TouchableOpacity>
         <Text style={styles.headerTitle}>Rocco</Text>
       </View>
@@ -18,19 +29,37 @@ const RoccoScreen = () => {
           <Text style={[styles.content, styles.text]}>Hey! You! Yes, you! Are you just going to stand by and watch that adorable tabby cat starve?</Text>
         </View>
       </View>
-      <View style={styles.chatBubble2}>
-        <View style={styles.nameWrapper}>
-          <Text style={[styles.name, styles.text]}>You:</Text>
+      {showChatBubble2 && (
+        <View style={styles.chatBubble2}>
+          <View style={styles.nameWrapper}>
+            <Text style={[styles.name, styles.text]}>You:</Text>
+          </View>
+          <View style={styles.contentWrapper}>
+            <Text style={[styles.content, styles.text]}>No...</Text>
+          </View>
         </View>
-        <View style={styles.contentWrapper}>
-          <Text style={[styles.content, styles.text]}>No...</Text>
+      )}
+      {showChatBubble2 && (
+        <TouchableOpacity style={styles.nextButton} onPress={handleNextChatBubble}>
+          <Ionicons name="arrow-forward-circle" size={40} color="beige" />
+        </TouchableOpacity>
+      )}
+      {showChatBubble3 && (
+        <View style={styles.chatBubble3}>
+          <View style={styles.nameWrapper}>
+            <Text style={[styles.name, styles.text]}>Rocco:</Text>
+          </View>
+          <View style={styles.contentWrapper}>
+            <Text style={[styles.content, styles.text]}>You think you can just waltz in and snag that cat? Not so fast. We ain't giving away freebies. You gotta prove you can handle it. Show us you're not just another stray yourself. Got cash? Got experience keeping critters alive? Then maybe we'll talk about you giving this furball a shot at a better life. Until then, keep your paws off unless you're serious.</Text>
+          </View>
         </View>
-      </View>
+      )}
+      {!showChatBubble2 && !showChatBubble3 && (
+        <TouchableOpacity style={styles.nextButton} onPress={handleNextChatBubble}>
+          <Ionicons name="arrow-forward-circle" size={40} color="beige" />
+        </TouchableOpacity>
+      )}
       {/* Add cat images and more chat bubbles here */}
-      <TouchableOpacity style={styles.startButton}>
-        <Text style={styles.startButtonText}>START</Text>
-      </TouchableOpacity>
-      {/* Add the illustration of the 'cute cat' and 'confused sleeper' here */}
     </View>
   );
 };
@@ -52,7 +81,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   chatBubble1: {
-    backgroundColor: '#fbffb9', // Slightly darker brown color
+    backgroundColor: '#754f44', // Slightly darker brown color
     borderRadius: 10,
     marginBottom: 10,
     width: '80%',
@@ -61,7 +90,16 @@ const styles = StyleSheet.create({
     paddingVertical: 50,
   },
   chatBubble2: {
-    backgroundColor: '#fbffb9', // Slightly darker brown color
+    backgroundColor: '#754f44', // Slightly darker brown color
+    borderRadius: 10,
+    marginBottom: 10,
+    width: '80%',
+    alignSelf: 'center',
+    paddingHorizontal: 15,
+    paddingVertical: 50,
+  },
+  chatBubble3: {
+    backgroundColor: '#754f44', // Slightly darker brown color
     borderRadius: 10,
     marginBottom: 10,
     width: '80%',
@@ -74,26 +112,21 @@ const styles = StyleSheet.create({
   },
   name: {
     fontWeight: 'bold',
+    color: 'white', // Set text color to white
+    fontFamily: 'monospace', // Set font family to monospace
   },
   contentWrapper: {
     alignItems: 'center',
   },
   content: {
     textAlign: 'center',
+    color: 'white', // Set text color to white
+    fontFamily: 'monospace', // Set font family to monospace
   },
-  startButton: {
+  nextButton: {
     position: 'absolute',
     bottom: 20,
     right: 20,
-    backgroundColor: 'green',
-    borderRadius: 10,
-    padding: 10,
-    alignItems: 'center',
-  },
-  startButtonText: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 14,
   },
   text: {
     fontSize: 20, // Adjusted font size to make it bigger
