@@ -13,7 +13,7 @@ function HomeScreen({ navigation }) {
     <View style={styles.container}>
       <StatusBar style="auto"/>
       <Image source={require('./images/logo.png')}/>
-      
+      <Image source={require('./images/tab.png')}/>
       <View style={styles.startButtonContainer}>
         <Button
           onPress={() => {

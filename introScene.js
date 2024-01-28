@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
+import MainScreen from './main';
+import HomeScreen from './App';
 
 const Intro = () => {
+    const navigation = useNavigation();
     const [messages, setMessages] = useState([
         'Hey! You! Yes, you! Are you just going to stand by and watch that adorable tabby cat starve?',
         "You think you can just waltz in and snag that cat? Not so fast. We ain't giving away freebies. You gotta prove you can handle it. Show us you're not just another stray yourself.",
@@ -28,8 +34,13 @@ const Intro = () => {
         if (currentMessageIndex < messages.length - 1) {
             setCurrentMessageIndex(prevIndex => prevIndex + 1);
             setTypedText('');
+        } else{
+            goToMainScreen();
         }
     };
+    const goToMainScreen = () => {
+        navigation.navigate('Main'); // Navigate to the Main screen
+      };
 
     return (
         <View style={styles.container}>
