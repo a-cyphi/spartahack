@@ -9,7 +9,7 @@ const MainScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <StatusBar style="auto"/>
-      <Image source={require('./images/tabbi.png')}/>
+      <Image source={require('./images/logo.png')}/>
       {/* Add icons container */}
       <View style={styles.iconsContainer}>
         {/* Add icons here */}

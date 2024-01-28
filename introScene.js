@@ -1,81 +1,56 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import React, { useEffect, useState } from 'react';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
-const intro = () => {
-    document.addEventListener('DOMContentLoaded', function() {
-        // Get the text box element
-        var textBox = document.getElementById('textBox');
-    
-        // Add event listener for tap or click event
-        textBox.addEventListener('click', function() {
-            // Move the text box off-screen
-            textBox.style.bottom = '-100px'; // or any value that moves it off-screen
-        });
-    
-        // Add event listener for Enter key press
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                // Move the text box off-screen
-                textBox.style.bottom = '-100px'; // or any value that moves it off-screen
+const Intro = () => {
+    const [messages, setMessages] = useState([
+        'Hey! You! Yes, you! Are you just going to stand by and watch that adorable tabby cat starve?',
+        "You think you can just waltz in and snag that cat? Not so fast. We ain't giving away freebies. You gotta prove you can handle it. Show us you're not just another stray yourself.",
+        "Got cash? Got experience keeping critters alive? Then maybe we'll talk about you giving this furball a shot at a better life. Until then, keep your paws off unless you're serious."
+    ]);
+    const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
+    const [typedText, setTypedText] = useState('');
+
+    useEffect(() => {
+        let index = 0;
+        const typingInterval = setInterval(() => {
+            if (index < messages[currentMessageIndex].length) {
+                setTypedText(messages[currentMessageIndex].substring(0, index + 1));
+                index++;
+            } else {
+                clearInterval(typingInterval);
             }
-        });
-    });
-    
-}
+        }, 50); // Adjust typing speed as needed
 
-function generateHTML() {
-    // Create main container element
-    const container = document.createElement('div');
-    container.classList.add('container');
+        return () => clearInterval(typingInterval);
+    }, [messages, currentMessageIndex]);
 
-    // Create background element
-    const background = document.createElement('div');
-    background.classList.add('background');
-    container.appendChild(background);
+    const handleNextMessage = () => {
+        if (currentMessageIndex < messages.length - 1) {
+            setCurrentMessageIndex(prevIndex => prevIndex + 1);
+            setTypedText('');
+        }
+    };
 
-    // Create content container
-    const content = document.createElement('div');
-    content.classList.add('content');
-    container.appendChild(content);
+    return (
+        <View style={styles.container}>
+            <Image source={require('./images/roccobg.png')} style={styles.background} />
+            <View style={styles.content}>
+                <Image source={require('./images/rocco.png')} style={styles.roccoImage} />
+                <View style={styles.textBox}>
+                    <Text style={styles.text}>{typedText}</Text>
+                    <TouchableOpacity style={styles.nextButtonContainer} onPress={handleNextMessage}>
+                        <Text style={styles.nextButtonText}>Next</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
+        </View>
+    );
+};
 
-    // Create text box element
-    const textBox = document.createElement('div');
-    textBox.classList.add('text-box');
-    textBox.id = 'textBox'; // Set id for reference
-    content.appendChild(textBox);
-
-    // Create heading element
-    const heading = document.createElement('h2');
-    heading.textContent = 'Your Text Here';
-    textBox.appendChild(heading);
-
-    // Create main image element
-    const mainImage = document.createElement('div');
-    mainImage.classList.add('main-image');
-    content.appendChild(mainImage);
-
-    // Create image element
-    const image = document.createElement('img');
-    image.src = 'path/to/main-image.jpg';
-    image.alt = 'Main Image';
-    mainImage.appendChild(image);
-
-    // Append container to the document body
-    document.body.appendChild(container);
-}
-
-// Call the function to generate HTML structure
-generateHTML();
-
-  
-
-const styles = {
+const styles = StyleSheet.create({
     container: {
-        position: 'relative',
-        width: '100%',
-        height: '100vh',
-        overflow: 'hidden',
+        flex: 1,
+        backgroundColor: 'white',
     },
     background: {
         position: 'absolute',
@@ -83,34 +58,46 @@ const styles = {
         left: 0,
         width: '100%',
         height: '100%',
-        backgroundImage: 'url(\'path/to/background-image.jpg\')',
-        backgroundSize: 'cover',
-        zIndex: -1,
+        opacity: 0.9,
     },
     content: {
-        position: 'relative',
-        zIndex: 1,
-        padding: '20px',
+        flex: 1,
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+        padding: 20,
+    },
+    roccoImage: {
+        width: 150,
+        height: 150,
+        marginBottom: 20,
     },
     textBox: {
-        backgroundColor: 'rgba(255, 255, 255, 0.7)',
-        padding: '20px',
-        borderRadius: '10px',
-        marginBottom: '20px',
+        backgroundColor: 'rgba(152, 152, 191, 0.8)',
+        padding: 20,
+        borderRadius: 10,
+        alignItems: 'center',
+        position: 'relative',
+        marginBottom: 20,
+        minHeight: '25%',
+        width: '80%,'
     },
-    mainImage: {
-        maxWidth: '100%',
-        height: 'auto',
-        display: 'block',
-        margin: '0 auto',
+    text: {
+        fontSize: 20,
+        textAlign: 'left',
+        color: 'white',
     },
-    '@media (min-width: 768px)': {
-        container: {
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-        },
+    nextButtonContainer: {
+        position: 'absolute',
+        bottom: 5,
+        right: 5,
+        backgroundColor: 'rgb(100, 100, 140)',
+        padding: 5,
+        borderRadius: 5,
     },
-};
+    nextButtonText: {
+        color: 'white',
+        fontSize: 16,
+    },
+});
 
-export default styles;
+export default Intro;
