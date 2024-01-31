@@ -7,23 +7,28 @@ const Stack = createStackNavigator();
 
 const MainScreen = ({ navigation }) => {
   return (
-    <View style={styles.container}>
+    <View style={styles.background}>
       <StatusBar style="auto"/>
-      <Image source={require('./images/logo.png')}/>
+      <Image source={require('./images/citybg.png')}/>
       {/* Add icons container */}
       <View style={styles.iconsContainer}>
         {/* Add icons here */}
       </View>
       {/* Add XP bar */}
-      <View style={styles.xpBar}></View>
+      <View style={styles.xpBar}>
+        <StatusBar style="auto"/>
+      <Image source={require('./images/xpbar.png')}/>
+      </View>
       {/* Add Money bar */}
-      <View style={styles.moneyBar}></View>
+      <View style={styles.moneyBar}>
+      <StatusBar style="auto"/>
+      <Image source={require('./images/xpbar.png')}/>
+      </View>
       {/* Add Level bar */}
-      <View style={styles.levelBar}></View>
-      
-      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Rocco')}>
-        <Text style={styles.buttonText}>Go to Rocco</Text>
-      </TouchableOpacity>
+      <View style={styles.levelBar}>
+      <StatusBar style="auto"/>
+      <Image source={require('./images/logo.png')}/>
+      </View>
     </View>
   );
 }
@@ -40,11 +45,13 @@ const MainScreen = ({ navigation }) => {
 // }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fdd692',
-    alignItems: 'center',
-    justifyContent: 'center',
+  background: {
+    top: 0,
+    left: 0,
+    position: 'absolute',
+    width: '100%',
+    height: '100%',
+    opacity: .9,
   },
   iconsContainer: {
     position: 'absolute',

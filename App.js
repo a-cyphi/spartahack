@@ -1,34 +1,35 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, Button } from 'react-native';
+import { TouchableOpacity, StyleSheet, Text, View, Image, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
 import RoccoScreen from './introScene'; 
 import MainScreen from './main';
 
 const Stack = createStackNavigator();
 
 function HomeScreen({ navigation }) {
+
+    const handlePress = () => {
+      navigation.navigate('Rocco'); // Navigate to the Main screen
+    };
   return (
     <View style={styles.container}>
       <StatusBar style="auto"/>
       <Image source={require('./images/logo.png')}/>
       <Image source={require('./images/tab.png')}/>
       <View style={styles.startButtonContainer}>
-        <Button
-          onPress={() => {
-            // Functionality when the start button is pressed
-          }}
+      <TouchableOpacity onPress={handlePress}>
+        <Image
+          source={require('./images/start.png')}
+          style={styles.startButton}
         />
-        <Image source={require('./images/start.png')} style={styles.startButton} />
+      </TouchableOpacity>
+        
       </View>
-
-      <Button
-        onPress={() => navigation.navigate('Rocco')}
-        color= 'transparent'
-      />
-      
     </View>
+
   );
 }
 

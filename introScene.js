@@ -30,17 +30,19 @@ const Intro = () => {
         return () => clearInterval(typingInterval);
     }, [messages, currentMessageIndex]);
 
+    const goToMainScreen = () => {
+        navigation.navigate('Main'); // Navigate to the Main screen
+      };
+
     const handleNextMessage = () => {
         if (currentMessageIndex < messages.length - 1) {
             setCurrentMessageIndex(prevIndex => prevIndex + 1);
             setTypedText('');
         } else{
             goToMainScreen();
+
         }
     };
-    const goToMainScreen = () => {
-        navigation.navigate('Main'); // Navigate to the Main screen
-      };
 
     return (
         <View style={styles.container}>
