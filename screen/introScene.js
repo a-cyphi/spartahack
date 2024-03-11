@@ -3,7 +3,7 @@ import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
-import MainScreen from './main';
+import MainScreen from './in-game-screen';
 import HomeScreen from './App';
 
 const Intro = () => {

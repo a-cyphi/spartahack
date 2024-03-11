@@ -5,7 +5,20 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { useNavigation } from '@react-navigation/native';
 import RoccoScreen from './introScene'; 
-import MainScreen from './main';
+import MainScreen from './in-game-screen';
+import "./App.css";
+import {Auth} from "./components/auth";
+
+function App(){
+  return(
+      <div className="App">
+          <Auth/>
+
+          
+      </div>
+  );
+}
+
 
 const Stack = createStackNavigator();
 
@@ -17,13 +30,18 @@ function HomeScreen({ navigation }) {
   return (
     <View style={styles.container}>
       <StatusBar style="auto"/>
-      <Image source={require('./images/logo.png')}/>
-      <Image source={require('./images/tab.png')}/>
+      <View style={styles.logoContainer}>
+        <Image source={require('./images/logo.png')}/>
+      </View>
+      <View style={styles.catContainer}>
+        <Image source={require('./images/tab.png')}/>
+      </View>
       <View style={styles.startButtonContainer}>
       <TouchableOpacity onPress={handlePress}>
         <Image
-          source={require('./images/start.png')}
           style={styles.startButton}
+          source={require('./images/start.png')}
+          
         />
       </TouchableOpacity>
         
@@ -52,13 +70,24 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  logoContainer: {
+    top: 30,
+    right: 10,
+    position: 'relative',
+    alignItems: 'center',
+  },
+  catContainer: {
+    position: 'relative',
+    margin: -100,
+    alignItems: 'center',
+  },
   startButtonContainer: {
     position: 'relative',
+    alignItems: 'center',
   },
   startButton: {
-    position: 'absolute',
-    top: -40, // Adjust this value as per your requirement
-    left: '-90%',
-    transform: [{ translateX: -50 }], // Adjust this value based on the width of your button
-  },
+    top: 40, 
+    left: 50,
+    transform: [{ translateX: -50 }],
+  }
 });
